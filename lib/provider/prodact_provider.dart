@@ -207,6 +207,24 @@ class ProdactNotifier extends StateNotifier<Product?> {
       throw Exception('فشل في جلب البيانات: ${response.statusCode}');
     }
   }
+
+  Future<void> addToContainer(int containersId, List<int> productId) async {
+    final url = Uri.parse(
+      'https://alashi.online/backendapi/public/api/add-to-container',
+    );
+    final Map<String, dynamic> requestBody = {'container_id':containersId,'product_ids':productId};
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: requestBody,
+    );
+    if (response.statusCode==200) {
+      
+    }
+  }
 }
 
 final prodactNotifierProvider =
